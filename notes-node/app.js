@@ -9,25 +9,34 @@ const notes = require('./notes.js');
 
 var user = os.userInfo();
 
-var command = process.argv[2];
+// var command = process.argv[2];
 const argv = yargs.argv;
+var command = argv._[0];
 
 
 if (command == 'add') {
     console.log('Adding new note');
-    notes.addNote(argv.title, argv.body);
+    note = notes.addNote(argv.title, argv.body);
+
+    if (note) {
+        console.log('Note created');
+        console.log('--');
+        console.log(`Title: ${note.title}`);
+        console.log(`Body: ${note.body}`);
+    } else {
+        console.log('Note title taken');
+    }
 }else if (command == 'list') {
     notes.getAll();
 }else if (command == 'read') {
-    notes.getNote(argv.title);
+    // notes.getNote(argv.title);
+    var nts = notes.fetchNotes();
+    console.log('notlar:\n', nts);
+
 }else if (command == 'remove') {
     notes.removeNote(argv.title);
-}else if (command == '') {
-
-}else if (command == '') {
-
-}else if (command == '') {
-
+}else {
+    console.log('Command not recognized');
 }
 
 
