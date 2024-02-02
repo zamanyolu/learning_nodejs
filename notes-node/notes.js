@@ -26,7 +26,6 @@ var fetchNotes = ()=>{
     } catch (e){
         return [];
     }
-
 }
 
 var addNote = (title, body)=>{
