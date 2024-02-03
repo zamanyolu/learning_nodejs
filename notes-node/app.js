@@ -1,7 +1,7 @@
 console.log('Starting app.js');
 const fs = require('fs');
 const os = require('os');
-const _ = require('lodash');
+const _ = require('loadsh');
 const yargs = require('yargs');
 
 
@@ -20,9 +20,8 @@ if (command == 'add') {
 
     if (note) {
         console.log('Note created');
-        console.log('--');
-        console.log(`Title: ${note.title}`);
-        console.log(`Body: ${note.body}`);
+        notes.logNote(note);
+
     } else {
         console.log('Note title taken');
     }
@@ -30,15 +29,23 @@ if (command == 'add') {
     notes.getAll();
 }else if (command == 'read') {
     // notes.getNote(argv.title);
-    var nts = notes.fetchNotes();
-    console.log('notlar:\n', nts);
-
+    // var nts = notes.fetchNotes();
+    // console.log('notlar:\n', nts);
+    var note = note.getNote(argv.title);
+    if(note){
+        console.log('Note found');
+        notes.logNote(note);
+    }else{
+        console.log('Note not found');
+    }
 }else if (command == 'remove') {
-    notes.removeNote(argv.title);
+    var noteRemoved = notes.removeNote(argv.title);
+
+    var message = noteRemoved ? "Note was removed" : 'Note not found';
+    console.log(message);
 }else {
     console.log('Command not recognized');
 }
-
 
 
 // var res = notes.addNote();
