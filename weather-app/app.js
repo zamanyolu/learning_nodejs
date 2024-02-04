@@ -1,7 +1,5 @@
 const geocode = require('./geocode/geocode.js');
-const API_KEY = JSON.parse(fs.readFileSync('API_KEY.json'));
-const openWeatherKey = API_KEY.openWeather_Key;
-
+const weather = require('./weather/weather.js');
 
 
 var yargs = require('yargs');
@@ -19,15 +17,22 @@ const argv = yargs
     .alias('help', 'h')
     .argv;
 
-openWeatherQueryUrl=`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${openWeatherKey}`
 
 address = encodeURI(argv.address);
 
-geocode.geocodeAddress(address, (errorMessage, results) =>{
-    if(errorMessage){
+geocode.geocodeAddress(address, (errorMessage, results) => {
+    if (errorMessage) {
         console.log(errorMessage);
-    }else{
-        console.log(JSON.stringify(results, undefined, 2));
+    } else {
+        console.log(results.address);
+        weather.getWeather(results.latitude, results.longitude,
+            (errorMessage, weatherResults) => {
+                if (errorMessage) {
+                    console.log(errorMessage);
+                } else {
+                    console.log(JSON.stringify(weatherResults, undefined, 2));
+                }
+            })
     }
 
 });
