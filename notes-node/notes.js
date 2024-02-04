@@ -1,4 +1,5 @@
-console.log('Starting notes.js');
+// console.log('Starting notes.js');
+
 const fs = require('fs');
 const {filter} = require("loadsh/collection");
 module.exports.age = 25;
@@ -19,7 +20,8 @@ var getNote = function (title) {
 // };
 
 var getAll = ()=>{
-    console.log('Getting all notes');
+    // console.log('Getting all notes');
+    return fetchNotes();
 }
 
 
@@ -58,6 +60,7 @@ var saveNotes = (notes) =>{
 
 
 var logNote = (note) =>{
+    debugger;
     console.log('--');
     console.log('Title:', note.title);
     console.log('Body: ', note.body);
