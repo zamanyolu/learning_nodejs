@@ -1,6 +1,6 @@
-const request = require("/notes-node/node_modules/request");
+const request = require("./weather-app/node_modules/request");
 var fs = require('fs');
-const API_KEY = JSON.parse(fs.readFileSync('../API_KEY.json'));
+const API_KEY = JSON.parse(fs.readFileSync('./API_KEY.json'));
 const openWeatherKey = API_KEY.openWeather_Key;
 
 // url = "https://maps.googleapis.com/maps/api/js?sensor=false"
