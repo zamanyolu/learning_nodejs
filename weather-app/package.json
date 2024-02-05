@@ -1,0 +1,15 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Gets weather data from Google APIs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hakan Temiz",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.2",
+    "yargs": "^17.7.2"
+  }
+}
